@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ハセトモ ファンクラブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef0f6; --surface:#ffffff; --ink:#14183a; --muted:#566079; --line:#d3d8e6;
+  --btn:#14183a; --btn-ink:#ffffff;
+  --t1:#7fb6e6; --t2:#e8a0b4; --t3:#9a86d6; --t4:#d9ad4a;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0f1226;--surface:#181c3a;--ink:#eef0fa;--muted:#aab2cf;--line:#2c3260;--btn:#eef0fa;--btn-ink:#14183a;}
+}
+:root[data-theme="dark"]{--bg:#0f1226;--surface:#181c3a;--ink:#eef0fa;--muted:#aab2cf;--line:#2c3260;--btn:#eef0fa;--btn-ink:#14183a;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;line-height:1.8;font-size:16px}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;margin:0;line-height:1.3}
+header.hero{padding:72px 0 56px}
+.hero .en{font-family:"Shippori Mincho",serif;font-weight:700;font-size:15px;color:var(--muted);letter-spacing:.2em;margin-bottom:10px}
+.hero h1{font-size:clamp(52px,13vw,128px);font-weight:800;letter-spacing:.02em}
+.hero p{max-width:30em;font-size:18px;color:var(--muted);margin:20px 0 28px}
+.btn{display:inline-block;border:0;border-radius:999px;background:var(--btn);color:var(--btn-ink);font:700 16px "Zen Kaku Gothic New",sans-serif;padding:13px 28px;cursor:pointer;text-decoration:none}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--t3);outline-offset:3px}
+.hero .note{display:block;margin-top:14px;font-size:14px;color:var(--muted)}
+h2{font-size:clamp(26px,5vw,38px);margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 28px}
+.tiers{display:flex;flex-direction:column;gap:14px;padding-bottom:64px}
+.tier{display:grid;grid-template-columns:240px 1fr;background:var(--surface);border:1px solid var(--line);border-left:10px solid var(--c);border-radius:6px 22px 22px 6px;overflow:hidden}
+.tier .head{padding:26px 24px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.tier .en{font-family:"Shippori Mincho",serif;font-size:14px;color:var(--muted)}
+.tier h3{font-size:28px}
+.price{font-family:"Shippori Mincho",serif;font-weight:800;font-size:34px;margin-top:8px}
+.price small{font:400 13px "Zen Kaku Gothic New",sans-serif;color:var(--muted);display:block;margin-top:-2px}
+.tier .body{padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.tier .inc{margin:0;font-weight:700;font-size:14px;color:var(--muted)}
+.tier ul{margin:0;padding-left:20px}
+.tier li{margin:5px 0}
+.tier .body .btn{align-self:flex-start;padding:10px 24px;font-size:15px}
+.t1{--c:var(--t1)}.t2{--c:var(--t2)}.t3{--c:var(--t3)}.t4{--c:var(--t4)}
+.t4{border-width:1px 1px 1px 18px}
+.t4 .price{font-size:42px}
+.t4 .head{background:linear-gradient(180deg,color-mix(in srgb,var(--t4) 22%,var(--surface)),var(--surface))}
+.join{background:var(--surface);border-top:1px solid var(--line);padding:56px 0 64px}
+.field{display:flex;flex-direction:column;gap:6px;margin:16px 0;max-width:460px}
+label{font-weight:700;font-size:14px}
+select,input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+#msg{margin-top:18px;max-width:520px;padding:14px 16px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+#msg[hidden]{display:none}
+#card{margin-top:22px;max-width:520px}
+#card[hidden]{display:none}
+.mcard{border-radius:16px;padding:22px 24px;color:#14183a;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#fff),color-mix(in srgb,var(--c) 40%,#fff));border:1px solid var(--line)}
+.mcard .k{font-size:13px;font-weight:700}
+.mcard .tn{font-family:"Shippori Mincho",serif;font-weight:800;font-size:28px;margin:10px 0 2px}
+.mcard .nm{font-size:20px;font-weight:700}
+.mcard .dt{font-size:13px;margin-top:14px}
+#card .act{margin-top:16px}
+#card .act p{margin:0;color:var(--muted)}
+.faq{padding:56px 0}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0;max-width:720px}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{margin:8px 0 0;color:var(--muted)}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:720px){
+  .tier{grid-template-columns:1fr}
+  .tier .head{border-right:0;border-bottom:1px solid var(--line)}
+  header.hero{padding:48px 0 40px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="en">OFFICIAL FAN CLUB</div>
+  <h1>ハセトモ</h1>
+  <p>ハセトモ公式ファンクラブへようこそ。会員になって、ハセトモをもっと身近に感じてください。</p>
+  <a class="btn" href="#tiers">会員プランを見る</a>
+  <span class="note">会員期間は1年間です。価格はすべて税込です。</span>
+</div></header>
+
+<main>
+<section class="wrap" id="tiers">
+  <h2>会員プラン</h2>
+  <p class="sub">各プランには、ひとつ下のプランの特典がすべて含まれます。</p>
+  <div class="tiers">
+
+    <article class="tier t1">
+      <div class="head"><span class="en">Regular</span><h3>レギュラー</h3>
+        <div class="price">¥35,000<small>年額（税込）</small></div></div>
+      <div class="body">
+        <ul>
+          <li>会員番号入りのデジタル会員証</li>
+          <li>会員限定の写真・投稿・裏話の更新</li>
+          <li>月1回の会員向けニュースレター</li>
+          <li>ファンクラブ先行チケット販売</li>
+          <li>会員限定の壁紙・ダウンロード特典</li>
+          <li>ハセトモからのお誕生日メッセージ</li>
+        </ul>
+        <button class="btn" data-join="レギュラー">レギュラーに入会する</button>
+      </div>
+    </article>
+
+    <article class="tier t2">
+      <div class="head"><span class="en">Premium</span><h3>プレミアム</h3>
+        <div class="price">¥55,000<small>年額（税込）</small></div></div>
+      <div class="body">
+        <p class="inc">レギュラーの特典すべてに加えて</p>
+        <ul>
+          <li>チケット抽選で優先的に扱われます</li>
+          <li>年1回お届けする会員限定グッズ</li>
+          <li>会員限定ライブ配信</li>
+          <li>年1回、企画やセットリストの投票に参加</li>
+        </ul>
+        <button class="btn" data-join="プレミアム">プレミアムに入会する</button>
+      </div>
+    </article>
+
+    <article class="tier t3">
+      <div class="head"><span class="en">VIP</span><h3>VIP</h3>
+        <div class="price">¥75,000<small>年額（税込）</small></div></div>
+      <div class="body">
+        <p class="inc">プレミアムの特典すべてに加えて</p>
+        <ul>
+          <li>サイン入りグッズセット</li>
+          <li>年に一度のファンミーティングへのご招待（人数限定）</li>
+          <li>会員の質問に答える動画を四半期ごとに配信</li>
+          <li>年末の会員クレジットにお名前を掲載</li>
+        </ul>
+        <button class="btn" data-join="VIP">VIPに入会する</button>
+      </div>
+    </article>
+
+    <article class="tier t4">
+      <div class="head"><span class="en">VIP Elite</span><h3>VIPエリート</h3>
+        <div class="price">¥100,000<small>年額（税込）</small></div></div>
+      <div class="body">
+        <p class="inc">VIPの特典すべてに加えて</p>
+        <ul>
+          <li>お好きなイベント1公演のチケットを確約</li>
+          <li>プライベートな交流会・アフターパーティーへのご招待</li>
+          <li>ハセトモ直筆のメッセージ</li>
+          <li>お名前入りのオーダーメイド会員アイテム</li>
+          <li>VIPエリート会員ウォールにお名前を永久掲載</li>
+        </ul>
+        <button class="btn" data-join="VIPエリート">VIPエリートに入会する</button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="join" id="join"><div class="wrap">
+  <h2>ファンクラブに入会する</h2>
+  <p class="sub">プランを選び、メールアドレスを入力してください。お支払いのご案内と会員証をお送りします。</p>
+  <div class="field"><label for="tier">会員プラン</label>
+    <select id="tier">
+      <option>レギュラー — ¥35,000</option>
+      <option>プレミアム — ¥55,000</option>
+      <option>VIP — ¥75,000</option>
+      <option>VIPエリート — ¥100,000</option>
+    </select></div>
+  <div class="field"><label for="name">お名前</label>
+    <input id="name" type="text" autocomplete="name" placeholder="ハセ 太郎"></div>
+  <div class="field"><label for="email">メールアドレス</label>
+    <input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+  <button class="btn" id="go">入会を申し込む</button>
+  <div id="msg" role="status" hidden></div>
+  <div id="card" hidden></div>
+</div></section>
+
+<section class="wrap faq">
+  <h2>よくある質問</h2>
+  <details><summary>会員期間はどれくらいですか？</summary><p>入会日から1年間です。期間が終わる前にメールでお知らせしますので、更新をご検討ください。</p></details>
+  <details><summary>あとからプランを変更できますか？</summary><p>はい。差額をお支払いいただくと、いつでも上位のプランに変更できます。</p></details>
+  <details><summary>チケット抽選はどのように行われますか？</summary><p>会員番号でご応募いただきます。上位のプランほど優先度が高くなり、VIPエリート会員は1公演のチケットが確約されます。</p></details>
+</section>
+</main>
+
+<footer><div class="wrap">© ハセトモ ファンクラブ　非公式のサイト案です。お支払い機能はまだ接続されていません。</div></footer>
+
+<script>
+(function(){
+  var sel=document.getElementById('tier'), email=document.getElementById('email'), msg=document.getElementById('msg');
+  /* 運営者が設定する項目：お支払いリンク（Stripe等）と受付メールアドレス */
+  var CONFIG={contactEmail:'managementoficial2@gmail.com',payLinks:{'レギュラー':'','プレミアム':'','VIP':'','VIPエリート':''}};
+  var nameIn=document.getElementById('name'), card=document.getElementById('card');
+  var COLORS={'レギュラー':'var(--t1)','プレミアム':'var(--t2)','VIP':'var(--t3)','VIPエリート':'var(--t4)'};
+  function render(n,t,price,e){
+    card.hidden=false; card.textContent='';
+    var c=document.createElement('div'); c.className='mcard'; c.style.setProperty('--c',COLORS[t]||'var(--t1)');
+    [['ハセトモ ファンクラブ','k'],[t+' 会員','tn'],[n,'nm'],['仮会員証　'+new Date().toLocaleDateString('ja-JP'),'dt']].forEach(function(a){var d=document.createElement('div');d.className=a[1];d.textContent=a[0];c.appendChild(d);});
+    card.appendChild(c);
+    var act=document.createElement('div'); act.className='act';
+    var link=CONFIG.payLinks[t], a=null;
+    if(link){a=document.createElement('a');a.href=link;a.target='_blank';a.rel='noopener';a.textContent='お支払いへ進む（'+price+'）';}
+    else if(CONFIG.contactEmail){a=document.createElement('a');a.href='mailto:'+CONFIG.contactEmail+'?subject='+encodeURIComponent('入会申し込み（'+t+'）')+'&body='+['お名前：'+n,'メール：'+e,'プラン：'+t+'（'+price+'）'].map(encodeURIComponent).join('%0A');a.textContent='申し込みメールを作成する';}
+    if(a){a.className='btn';act.appendChild(a);}
+    else{var p=document.createElement('p');p.textContent='お支払い方法は運営者が設定すると、ここに表示されます。';act.appendChild(p);}
+    card.appendChild(act);
+  }
+  function submitApp(e){
+    var n=nameIn.value.trim();
+    if(!n){msg.hidden=false;msg.textContent='お名前を入力してください。';nameIn.focus();return;}
+    msg.hidden=true;
+    var parts=sel.value.split(' — '), t=parts[0], price=parts[1];
+    try{localStorage.setItem('hasetomo-member',JSON.stringify({n:n,t:t}));}catch(x){}
+    render(n,t,price,e);
+    card.scrollIntoView({block:'nearest'});
+  }
+  document.querySelectorAll('[data-join]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var name=b.getAttribute('data-join');
+      for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text.split(' — ')[0]===name){sel.selectedIndex=i;break;} }
+      msg.hidden=true;
+      document.getElementById('join').scrollIntoView();
+      email.focus({preventScroll:true});
+    });
+  });
+  document.getElementById('go').addEventListener('click',function(){
+    var v=email.value.trim();
+    msg.hidden=false;
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){
+      msg.textContent='お支払いのご案内をお送りするため、正しいメールアドレスを入力してください。';
+      email.focus(); return;
+    }
+    submitApp(v);
+  });
+})();
+</script>
+</body>
+</html>
